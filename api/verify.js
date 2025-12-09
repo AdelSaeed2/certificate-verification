@@ -1,6 +1,6 @@
-import certificates from '../certificates.json' assert { type: "json" };
+const certificates = require('../certificates.json');
 
-export default function handler(req, res) {
+module.exports = function handler(req, res) {
   const { id } = req.query;
 
   const cert = certificates.find(c => c.id === id);
@@ -16,4 +16,4 @@ export default function handler(req, res) {
       message: "Certificate not found"
     });
   }
-}
+};

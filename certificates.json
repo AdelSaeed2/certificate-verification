@@ -1,0 +1,23 @@
+[
+  {
+    "id": "TRN-2025-1001",
+    "name": "John Doe",
+    "course": "Full Stack Development",
+    "issued": "2025-01-25",
+    "status": "valid"
+  },
+  {
+    "id": "TRN-2025-1002",
+    "name": "Sarah Ali",
+    "course": "Cyber Security Essentials",
+    "issued": "2025-02-01",
+    "status": "valid"
+  },
+  {
+    "id": "TRN-2025-1003",
+    "name": "Mohammed Karim",
+    "course": "Python for Beginners",
+    "issued": "2025-03-01",
+    "status": "valid"
+  }
+]

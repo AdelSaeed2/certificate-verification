@@ -1,19 +1,54 @@
-const certificates = require('../certificates.json');
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Certificate Verification</title>
+  <style>
+    body { font-family: Arial; padding: 30px; }
+    .valid { color: green; font-size: 24px; }
+    .invalid { color: red; font-size: 24px; }
+    .box { padding: 20px; border: 1px solid #ccc; margin-top: 20px; }
+  </style>
+</head>
+<body>
 
-module.exports = function handler(req, res) {
-  const { id } = req.query;
+<h2>Certificate Verification</h2>
 
-  const cert = certificates.find(c => c.id === id);
+<div id="result"></div>
 
-  if (cert) {
-    res.status(200).json({
-      valid: true,
-      certificate: cert
-    });
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const certId = params.get("cert");
+
+  if (!certId) {
+    document.getElementById("result").innerHTML = "<p>Please provide a certificate ID using '?cert=ID'.</p>";
   } else {
-    res.status(404).json({
-      valid: false,
-      message: "Certificate not found"
-    });
+    fetch(`/api/verify?id=${certId}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.valid) {
+          document.getElementById("result").innerHTML = `
+            <div class="box">
+              <p class="valid">✔ Certificate is VALID</p>
+              <p><b>ID:</b> ${data.certificate.id}</p>
+              <p><b>Name:</b> ${data.certificate.name}</p>
+              <p><b>Course:</b> ${data.certificate.course}</p>
+              <p><b>Issued:</b> ${data.certificate.issued}</p>
+            </div>
+          `;
+        } else {
+          document.getElementById("result").innerHTML = `
+            <div class="box">
+              <p class="invalid">❌ Certificate NOT FOUND</p>
+              <p>ID: ${certId}</p>
+            </div>
+          `;
+        }
+      })
+      .catch(() => {
+        document.getElementById("result").innerHTML = "<p>Error contacting server.</p>";
+      });
   }
-};
+</script>
+
+</body>
+</html>

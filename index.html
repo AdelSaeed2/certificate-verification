@@ -2,15 +2,75 @@
 <html>
 <head>
   <title>Certificate Verification</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      width: 420px;
+      padding: 35px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 180px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #005bbb;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    input[type="text"] {
+      width: 90%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #bbb;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #005bbb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #004a99;
+    }
+  </style>
 </head>
 <body>
 
-<h2>Check Your Certificate</h2>
+  <div class="container">
+    <img src="public/logo.png" class="logo" alt="Health Cluster Yemen Logo">
 
-<form action="verify.html">
-  <input type="text" name="cert" placeholder="Enter Certificate ID" required>
-  <button type="submit">Verify</button>
-</form>
+    <h2>Verify Certificate</h2>
+
+    <form action="verify.html">
+      <input type="text" name="cert" placeholder="Enter Certificate ID" required>
+      <button type="submit">Verify</button>
+    </form>
+  </div>
 
 </body>
 </html>
